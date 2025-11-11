@@ -21,7 +21,7 @@ public class Order {
     public Order(String orderId, String customerId, CustomerType customerType,
                  LocalDateTime timeStamp, OrderStatus orderStatus,
                  List<OrderItem> items, BigDecimal totalAmount,
-                 String paymentMethod, String shippingAddress, int priority,
+                 int priority,
                  LocalDateTime expirationTime) {
         this.orderId = orderId;
         this.customerId = customerId;
@@ -30,8 +30,8 @@ public class Order {
         this.orderStatus = orderStatus;
         this.items = items;
         this.totalAmount = totalAmount;
-        this.paymentMethod = paymentMethod;
-        this.shippingAddress = shippingAddress;
+        this.paymentMethod = null;
+        this.shippingAddress = null;
         this.priority = priority;
         this.expirationTime = expirationTime;
     }

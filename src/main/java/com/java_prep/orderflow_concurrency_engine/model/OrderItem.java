@@ -17,6 +17,13 @@ public class OrderItem {
         this.price = price;
         this.reservationId = reservationId;
     }
+    public OrderItem(String productId, String productName, int quantity, BigDecimal price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.reservationId = null;
+    }
 
     public String getProductId() {
         return productId;
