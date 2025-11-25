@@ -42,6 +42,9 @@ public class OrderProducer implements Runnable{
                     long count= orderProduced.incrementAndGet();
                     logger.debug("Producer Submitted Order: {}",order.getOrderId());
                     logger.debug("Total Orders Produced:{}",count);
+                    if (delayMs > 0) {
+                        Thread.sleep(delayMs);
+                    }
                 }else {
                     logger.warn("Failed to submit Order: {} - due to Queue Full(TimeOut reached)",order.getOrderId());
                 }
@@ -58,18 +61,12 @@ public class OrderProducer implements Runnable{
 
     private long calculateDelayBetweenOrders() {
         int targetRate = applicationConfig.getOrderGenerationRate(); // orders per second
-
         if (targetRate <= 0) {
             logger.warn("Invalid generation rate: {}. Using default 100", targetRate);
             targetRate = 100;
         }
-
-        // Calculate milliseconds between orders
         long delayMs = 1000L / targetRate;
-
-        logger.info("Target rate: {} orders/sec => {}ms delay between orders",
-                targetRate, delayMs);
-
+        logger.info("Target rate: {} orders/sec => {}ms delay between orders", targetRate, delayMs);
         return delayMs;
     }
 
