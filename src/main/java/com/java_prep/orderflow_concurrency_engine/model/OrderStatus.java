@@ -11,7 +11,7 @@ public enum OrderStatus {
     RESERVATION_FAILED,
     PAYMENT_FAILED,
     CANCELLED,
-    EXPIRED;
+    EXPIRED, INVENTORY_RESERVED, INVENTORY_UNAVAILABLE, RESERVATION_ROLLED_BACK;
 
     public boolean isFailureState() {
         return this == VALIDATION_FAILED || this == RESERVATION_FAILED || this == PAYMENT_FAILED || this == CANCELLED || this == EXPIRED;
